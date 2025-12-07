@@ -18,11 +18,12 @@ function SubmitButton({ hasText }: { hasText: boolean }) {
     <button
       type="submit"
       disabled={isDisabled}
-      className={`px-8 py-4 rounded-xl font-medium text-white transition-all duration-200 shadow-lg ${
-        isDisabled
-          ? "bg-gray-400 cursor-not-allowed opacity-70"
-          : "bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl transform hover:scale-105"
-      }`}
+      className={`text-lg w-full sm:w-auto px-6 py-4 rounded-xl font-semibold text-white transition-all duration-200 shadow-lg
+        ${
+          isDisabled
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl active:scale-95"
+        }`}
     >
       {pending ? "Adding..." : "Add Task"}
     </button>
@@ -51,7 +52,7 @@ export function AddTaskForm() {
     <>
       <form
         action={formAction}
-        className="flex gap-4 mb-4 bg-white/90 p-8 rounded-2xl shadow-lg border border-gray-200/50 transition-all hover:shadow-xl"
+        className="flex flex-col sm:flex-row gap-3 bg-white/90 p-5 sm:p-8 rounded-2xl shadow-xl border border-gray-200/50"
       >
         <input
           type="text"
@@ -60,16 +61,13 @@ export function AddTaskForm() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="What needs to be done?"
-          className="flex-1 px-6 py-4 text-lg font-medium text-gray-900 
-                     placeholder:text-gray-500 
-                     bg-white border border-gray-300 rounded-xl 
-                     focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 
-                     focus:outline-none transition-all"
+          className="flex-1 px-5 py-4 text-lg font-medium text-gray-900 placeholder:text-gray-500 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all"
         />
         <SubmitButton hasText={hasText} />
       </form>
-      {state.error && (
-        <div className="mt-2 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-center font-medium animate-in fade-in slide-in-from-top-2">
+
+      {state?.error && (
+        <div className="mt-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-center font-medium animate-pulse">
           {state.error}
         </div>
       )}
